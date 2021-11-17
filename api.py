@@ -1,15 +1,28 @@
 import requests
-import json
 
-response = requests.get('https://api.sleeper.app/v1/league/720397292238073856/rosters')
+league_id = '720397292238073856'
 
-data = response.json()
 
-def get_owners(res):
+def api_get(url_param):
+    return requests.get(f'https://api.sleeper.app/v1/league/{league_id}/{url_param}')
+
+
+rosters = api_get("rosters").json()
+users = api_get("users").json()
+
+# need to get from rosters:
+# id - roster['owner_id']
+# wins - roster['settings']['wins']
+# max points - roster['settings']['ppts']
+# actual points - roster['settings']['fpts']
+
+
+def get_teamnames(res):
     teams = []
     for team in res:
-        owner = team.get('owner_id')
-        teams.append(owner)
+        username = team['display_name']
+        teams.append(username)
     return teams
 
-print(get_owners(data))
+
+print(get_teamnames(users))
