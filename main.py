@@ -30,7 +30,3 @@ def winspercentage():
 @app.route('/<path:path>')
 def catch_all(path):
     return redirect(url_for('home'))
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
