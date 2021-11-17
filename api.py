@@ -23,6 +23,3 @@ def get_teamnames(res):
         username = team['display_name']
         teams.append(username)
     return teams
-
-
-print(get_teamnames(users))
