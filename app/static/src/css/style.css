@@ -3,13 +3,32 @@ body {
     color: white;
 }
 
-.charts {
-    margin-top: 100px;
+.league-toggler {
+    margin-right: 40px;
+    margin-left: 20px;
+    background-color: #25414D;
+    border: none;
+    color: white
 }
 
-/* .charts:last-child {
+.league-toggler:active, .league-toggler:focus {
+    background-color: #00CEB8;
+    color: white;
+    box-shadow: none;
+}
+
+.dropdown-choices {
+    margin-left: 30px;
+}
+
+.app, .charts {
+    margin-top: 80px;
     margin-bottom: 100px;
-} */
+}
+
+.header {
+    margin-bottom: 30px;
+}
 
 .chart-header {
     text-align: center;

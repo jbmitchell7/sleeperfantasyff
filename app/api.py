@@ -5,13 +5,13 @@ loeg = '720397292238073856'
 sloppy_joes = '725424222041657344'
 
 
-def api_get(url_param):
-    return requests.get(f'https://api.sleeper.app/v1/league/{sloppy_joes}/{url_param}')
+def api_get(url_param, league_id):
+    return requests.get(f'https://api.sleeper.app/v1/league/{league_id}/{url_param}')
 
 
-rosters = api_get("rosters").json()
-users = api_get("users").json()
-#
+rosters = api_get("rosters", sloppy_joes).json()
+users = api_get("users", sloppy_joes).json()
+
 # user_id - user['user_id']
 # id - roster['owner_id']
 # teamname - user['display_name']
