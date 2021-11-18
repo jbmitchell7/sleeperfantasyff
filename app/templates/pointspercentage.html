@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Max Points vs Max Points Percentage</h1>  
+    <div id="chart" class="chart"></div>  
+{% endblock %}
+{% block scripts %}
+<script type='text/javascript'>
+  const graphs = {{pp_graph | safe}};
+  Plotly.plot('chart',graphs,{});
+</script>
 {% endblock %}

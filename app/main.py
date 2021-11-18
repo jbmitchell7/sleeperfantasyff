@@ -1,10 +1,12 @@
 from flask import Flask, redirect, url_for, render_template
 
-from .api import get_teamnames, users, rosters
+from .api import get_teamnames, users
+from .chart import pw_graph, pp_graph, wp_graph
 
 app = Flask(__name__)
 
 
+@app.route("/home")
 @app.route("/")
 def home():
     return render_template("index.html", teamnames=get_teamnames(users))
@@ -12,17 +14,17 @@ def home():
 
 @app.route("/pointswins")
 def pointswins():
-    return render_template("pointswins.html")
+    return render_template("pointswins.html", pw_graph=pw_graph)
 
 
 @app.route("/pointspercentage")
 def pointspercentage():
-    return render_template("pointspercentage.html")
+    return render_template("pointspercentage.html", pp_graph=pp_graph)
 
 
 @app.route("/winspercentage")
 def winspercentage():
-    return render_template("winspercentage.html")
+    return render_template("winspercentage.html", wp_graph=wp_graph)
 
 
 # redirects to home if url is not found
