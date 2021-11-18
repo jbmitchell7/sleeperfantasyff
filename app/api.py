@@ -1,17 +1,29 @@
 import requests
 import numpy as np
 
-loeg = '720397292238073856'
-sloppy_joes = '725424222041657344'
 
-
+### api url call ###
 def api_get(url_param, league_id):
     return requests.get(f'https://api.sleeper.app/v1/league/{league_id}/{url_param}')
 
 
-rosters = api_get("rosters", sloppy_joes).json()
-users = api_get("users", sloppy_joes).json()
+### leagues ###
+loeg = '720397292238073856'
+sloppy_joes = '725424222041657344'
 
+
+# will eventually allow user to toggle league choice
+def change_league(league):
+    roster_list = api_get("rosters", league).json()
+    user_list = api_get("users", league).json()
+    league_data = [roster_list, user_list]
+    return league_data
+
+
+# initializes league data
+league_data = change_league(sloppy_joes)
+
+### api keys ###
 # user_id - user['user_id']
 # id - roster['owner_id']
 # teamname - user['display_name']
@@ -20,6 +32,7 @@ users = api_get("users", sloppy_joes).json()
 # actual points - roster['settings']['fpts']
 
 
+# gets team name
 def get_name(owners, users):
     names = []
     for owner in owners:
@@ -29,6 +42,8 @@ def get_name(owners, users):
     return names
 
 
+# gets various team stats(wins, actual points, max points)
+# based on input
 def get_stats(res, stat):
     stat_arr = []
     for team in res:
@@ -37,19 +52,13 @@ def get_stats(res, stat):
     return stat_arr
 
 
-def convert_percent(arr):
-    new_arr = []
-    for i in arr:
-        new_i = "{:.2%}".format(i)
-        new_arr.append(new_i)
-    return new_arr
+teamnames = get_name(league_data[0], league_data[1])
+wins = get_stats(league_data[0], 'wins')
 
-
-teamnames = get_name(rosters, users)
-wins = get_stats(rosters, 'wins')
-
-max_points = get_stats(rosters, 'ppts')
-actual_points = get_stats(rosters, 'fpts')
+max_points = get_stats(league_data[0], 'ppts')
+actual_points = get_stats(league_data[0], 'fpts')
+# uses numpy to divide actual and
+# max point arrays and get total point percentage
 mp = np.array(max_points)
 ap = np.array(actual_points)
 percentage = ap/mp
