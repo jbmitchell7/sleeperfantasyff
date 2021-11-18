@@ -2,3 +2,16 @@ body {
     background-color: #102131;
     color: white;
 }
+
+.charts {
+    margin-top: 30px;
+}
+
+.charts:last-child {
+    margin-bottom: 100px;
+}
+
+.chart-header {
+    text-align: center;
+    margin-top: 50px;
+}

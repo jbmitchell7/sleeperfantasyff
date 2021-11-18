@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block content %}
+<div class="charts">
+    <h3 class="chart-header">Max Points vs Wins</h3>
+    <p>
+        This graph shows the total points a team could have scored
+        with a perfect manager versus the total wins of the team. Better teams
+        are further right and luckier teams are further up.
+    </p>
+    <div id="pw-graph" class="pw-graph"></div>
+
+    <h3 class="chart-header">Max Points vs Percentage of Max Points</h3>
+    <p>
+        This graph show the total points a team could have scored with 
+        a perfect manager versus the percentage of those points they actually
+        scored. Better teams are further right, and better managers are further up.
+    </p>
+    <div id="pp-graph" class="pp-graph"></div>
+
+    <h3 class="chart-header">Wins vs Percentage of Max Points</h3>
+    <p>
+        This graph show the total wins of a team versus the percentage of 
+        max points that team scored. Luckier teams are further right, and
+        better managers are further up.
+    </p>
+    <div id="wp-graph" class="wp-graph"></div>      
+</div>
+
+{% endblock %}
+{% block scripts %}
+<script type='text/javascript'>
+  const graph1 = {{pp_graph | safe}};
+  Plotly.plot('pp-graph',graph1,{});
+</script>
+
+<script type='text/javascript'>
+  const graph2 = {{wp_graph | safe}};
+  Plotly.plot('wp-graph',graph2,{});
+</script>
+
+<script type='text/javascript'>
+  const graph3 = {{pw_graph | safe}};
+  Plotly.plot('pw-graph',graph3,{});
+</script>
+{% endblock %}

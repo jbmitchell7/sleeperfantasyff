@@ -1,36 +1,32 @@
 import requests
 import numpy as np
 
-league_id = '720397292238073856'
+loeg = '720397292238073856'
+sloppy_joes = '725424222041657344'
 
 
 def api_get(url_param):
-    return requests.get(f'https://api.sleeper.app/v1/league/{league_id}/{url_param}')
+    return requests.get(f'https://api.sleeper.app/v1/league/{sloppy_joes}/{url_param}')
 
 
 rosters = api_get("rosters").json()
 users = api_get("users").json()
-
+#
+# user_id - user['user_id']
 # id - roster['owner_id']
+# teamname - user['display_name']
 # wins - roster['settings']['wins']
 # max points - roster['settings']['ppts']
 # actual points - roster['settings']['fpts']
 
 
-def get_teamnames(res):
-    teams = []
-    for team in res:
-        username = team['display_name']
-        teams.append(username)
-    return teams
-
-
-def get_owner_id(res):
-    owners = []
-    for owner in res:
-        id = owner['owner_id']
-        owners.append(id)
-    return owners
+def get_name(owners, users):
+    names = []
+    for owner in owners:
+        for user in users:
+            if owner['owner_id'] == user['user_id']:
+                names.append(user['display_name'])
+    return names
 
 
 def get_stats(res, stat):
@@ -49,8 +45,7 @@ def convert_percent(arr):
     return new_arr
 
 
-teamnames = get_teamnames(users)
-ids = get_owner_id(rosters)
+teamnames = get_name(rosters, users)
 wins = get_stats(rosters, 'wins')
 
 max_points = get_stats(rosters, 'ppts')

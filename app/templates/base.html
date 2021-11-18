@@ -25,19 +25,12 @@
                     <a class="nav-link" href={{url_for('home')}}>Home</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href={{url_for('pointswins')}}>Max Points/Wins</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href={{url_for('pointspercentage')}}>Max Points/Max Points Percentage</a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href={{url_for('winspercentage')}}>Max Points Percentage/Wins</a>
+                    <a class="nav-link" href={{url_for('charts')}}>Charts</a>
                     </li>
                 </ul>
                 </div>
             </div>
         </nav>
-        <h1>Teams</h1>
         {% block content %}
         {% endblock %}
     </div>
