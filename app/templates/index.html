@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
 {% block content %}
-    <div class="container standings">
-        <h3 class="chart-header">League Data</h3>
-        <div id="standings" class="standings"></div>     
+    <div class="container app">
+        <h1 class="header">
+            Under Construction: This page will have more info,
+            but all data is currently on the Charts page.
+            Select League also does nothing.
+        <h2 class="header">Teams</h2>
+        {% for team in teamnames %}
+            <p>{{team}}</p>
+        {% endfor %}
     </div>
-{% endblock %}
-
-
-{% block scripts %}
-<script type='text/javascript'>
-  const standings_graph = {{standings | safe}};
-  Plotly.plot('standings',standings_graph,{});
-</script>
 {% endblock %}
 
     

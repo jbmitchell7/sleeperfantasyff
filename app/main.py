@@ -1,6 +1,7 @@
 from flask import Flask, redirect, url_for, render_template
 
-from .chart import pw_graph, pp_graph, wp_graph, standings_graph
+from .api import teamnames, wins, actual_points, max_points, percentage
+from .chart import pw_graph, pp_graph, wp_graph
 
 app = Flask(__name__)
 
@@ -9,7 +10,7 @@ app = Flask(__name__)
 @app.route("/home")
 @app.route("/")
 def home():
-    return render_template("index.html", standings=standings_graph)
+    return render_template("index.html", teamnames=teamnames)
 
 
 # route for charts, passes the 3 graph types and helper variables
