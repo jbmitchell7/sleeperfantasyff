@@ -52,6 +52,11 @@ def get_stats(res, stat):
     return stat_arr
 
 
+def get_mean(input):
+    mean_input = np.mean(input)
+    return mean_input
+
+
 teamnames = get_name(league_data[0], league_data[1])
 wins = get_stats(league_data[0], 'wins')
 
@@ -62,3 +67,7 @@ actual_points = get_stats(league_data[0], 'fpts')
 mp = np.array(max_points)
 ap = np.array(actual_points)
 percentage = ap/mp
+
+mean_max_points = get_mean(max_points)
+mean_wins = get_mean(wins)
+mean_percentage = get_mean(percentage)
