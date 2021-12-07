@@ -21,8 +21,8 @@ def change_league(league):
 
 
 # initializes league data
-league_data = change_league(sloppy_joes)
-#league_data = change_league(loeg)
+#league_data = change_league(sloppy_joes)
+league_data = change_league(loeg)
 
 
 ### api keys ###
